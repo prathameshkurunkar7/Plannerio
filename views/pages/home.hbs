@@ -1,0 +1,111 @@
+<nav>
+<div class="nav-wrapper #00838f cyan darken-3">
+  <a href="#!" class="brand-logo center">Plannerio</a>
+  <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+  <ul class="right hide-on-med-and-down">
+    <li><a class="dropdown-trigger" data-target="dropdown1"><i class="material-icons left">account_circle</i>{{userName}}</a></li> 
+  </ul>
+</div>
+</nav>
+<ul id='dropdown1' class='dropdown-content'>
+    <li><a href="/register/logout" class="#3949ab #00838f cyan-text text-darken-3"><i class="material-icons left">exit_to_app</i>Logout</a></li>
+</ul>
+<ul class="sidenav" id="mobile-demo">
+    <li><a href="#"><i class="material-icons left">account_circle</i>{{userName}}</a></li>
+    <li><a href="/register/logout" class="#3949ab #00838f cyan-text text-darken-3"><i class="material-icons left">exit_to_app</i>Logout</a></li> 
+</ul>
+
+<br>
+<br>
+<div class="row">
+
+<form class="offset-s3 col s6 offset-s3" method="post" action="/user/addToDo">
+  <textarea id="textarea1" name="todo" class="materialize-textarea flow-text" placeholder="Tasks?" required></textarea>
+    <div class="input-field">
+    <select name="Label">
+      <option value="" disabled selected>Label this task?</option>
+      <option value="Personal">Personal</option>
+      <option value="Work">Work</option>
+      <option value="Home">Household</option>
+      <option value="Other">Other</option>
+    </select>
+    </div>
+    <br>
+  <center><button type="submit" class="btn waves-effect waves-light #00838f cyan darken-3">Add Task</button></center>
+</form>
+
+</div>
+<br>
+
+<div class="row">
+  <div class="row">
+    <center><h4 style="opacity: 0.5;">My Tasks</h4></center>
+  </div>
+  {{#each todos}}
+<div class="offset-s1 col s10 offset-s1">
+  <ul class="collapsible sortable">
+    {{#each this}}
+    {{#if this.task}}
+    <li>
+      <div class="collapsible-header" data-id={{this._id}}><i class="material-icons">event_note</i><span>{{task}}</span>
+        <span class="new badge #00838f cyan darken-3" data-badge-caption="{{status}}" ></span>
+        <a class="waves-effect waves-white btn-flat center deletebutton"><span class="material-icons center">delete_outline</span></a>
+        <a class="waves-effect waves-white btn-flat center checkbutton"><span class="material-icons center">check_circle_outline</span></a>
+      </div>
+      <div class="collapsible-body">
+        {{#if this.label}}
+        <span class="valign-wrapper">Label:<p style="opacity: 0.5;">{{label}}</p></span>
+        {{/if}}
+        <a data-id={{this._id}} class="waves-effect waves-light btn-small setReminder modal-trigger #00838f cyan darken-3" href="#modal1">Set Reminder</a>
+      </div>
+    </li>
+    {{/if}}
+    {{/each}}
+  </ul>
+</div>
+{{/each}}
+</div>
+
+<div id="modal1" class="modal bottom-sheet">
+  <div class="modal-content">
+    <h4>Set Reminder</h4>
+    <br>
+    <p>
+      Set Date:<input type="text" name="date-pick" class="datepicker">
+      Set Time:<input type="text" name="time-pick" class="timepicker">
+    </p>
+  </div>
+  <div class="modal-footer">
+    <a href="#" id="savereminder" class="saveReminder waves-effect #00796b teal lighten-1 waves-light btn-small" ><i class="material-icons white-text">send</i></a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="row">
+      <center><h4 style="opacity: 0.5;">Archive</h4></center>
+  </div>
+  {{#each archive}}
+<div class="offset-s1 col s10 offset-s1">
+  <ul class="collapsible sortable">
+    {{#each this}}
+    {{#if this.task}}
+    <li>
+      <div class="collapsible-header completed-task" data-id={{this._id}}><i class="material-icons">event_note</i><span>{{task}}</span>
+        <span class="new badge #00838f cyan darken-3" data-badge-caption="{{status}}" ></span>
+        <a class="waves-effect waves-white btn-flat center trashbutton"><span class="material-icons center">delete_outline</span></a>
+        <a class="waves-effect waves-white btn-flat center uncheckbutton"><span class="material-icons center">remove_circle_outline</span></a>
+      </div>
+      <div class="collapsible-body">
+        {{#if this.label}}
+        <span class="valign-wrapper">Label:<p style="opacity: 0.5;">{{label}}</p></span>
+        {{/if}} 
+        <span class="valign-wrapper">Completed At:<p style="opacity: 0.5;">{{completed_at}}</p></span>
+      </div>
+    </li>
+    {{/if}}
+    {{/each}}
+  </ul>
+</div>
+{{/each}}
+</div>
+<script src="client.js"></script>

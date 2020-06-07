@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"  media="screen,projection"/>
+      <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+      <style type="text/css">
+      body{
+        font-family: Merriweather;
+        display: flex;
+        min-height: 100vh;
+        flex-direction: column;
+      }
+      main {
+        flex: 1 0 auto;
+      }
+      .modal-1{
+        height: 500px;
+        width: 400px;
+      }
+      .modal-2{
+        height: 600px;
+        width: 400px;
+      }
+
+      .grid-container {
+        display: grid;
+        grid-template-columns: auto auto;
+        padding: 5px;
+        padding-bottom: 10px;
+        gap: 5px;
+      }
+
+      .grid-item {
+        padding: 5px;
+        font-size: 30px;
+        text-align: center;
+        height: 50px;
+      }  
+      </style>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <title>Plannerio</title>
+  </head>
+
+  <body>
+      <div>
+          {{{body}}}
+      </div>
+      <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+      <script>
+      $(document).ready(function(){
+          $('.sidenav').sidenav();
+          $('.parallax').parallax();
+          $('.modal').modal();
+          $('.collapsible').collapsible();
+          $('.dropdown-trigger').dropdown();
+          $('select').formSelect();
+          $('.datepicker').datepicker();
+          $('.timepicker').timepicker();
+
+          $(".collapsible-header a").click(function(e) {
+            e.stopPropagation();
+          });
+          $('.setReminder').each(function(index,value){
+            $(this).attr("id",`${index}`);
+          });
+          
+      });
+      </script>
+      <script>
+      $( function(){
+        $( ".sortable" ).sortable();
+        $( ".sortable" ).disableSelection();
+      });
+      $('.completed-task').find('span:first').css({'text-decoration':'line-through','opacity':'0.8'});
+    </script>
+    <script>
+      var data_id;
+      //all AJAX calls.
+
+      //delete todo-ajax delete request
+      $('.deletebutton').click(function(e){
+        var data_id=$(this).parent('div').attr('data-id');
+        const id=data_id;
+        $.ajax({
+          type:'DELETE',
+          url:'/user/deleteToDo/'+id,
+          success:function(res){
+            alert('A Task has been deleted from My Tasks.');
+            window.location.href='/user';
+          },
+          error: function(err){
+            console.log(err);
+          }
+        });
+      });
+
+      //delete todo-ajax delete request
+      $('.trashbutton').click(function(e){
+        var data_id=$(this).parent('div').attr('data-id');
+        const id=data_id;
+        $.ajax({
+          type:'DELETE',
+          url:'/user/trashToDo/'+id,
+          success:function(res){
+            alert('A Task has been deleted from Archived Tasks.');
+            window.location.href='/user';
+          },
+          error: function(err){
+            console.log(err);
+          }
+        });
+      });
+
+      //put ajax request on complete To-Do
+      $('.checkbutton').click(function(e){
+        var data_id=$(this).parent('div').attr('data-id');
+        const id=data_id;
+        var $task = $(this).parent('div').find('span:first').text();
+        var $label = $(this).parent('div').siblings('div').find('span:first').find('p').text();
+        var todo={
+          task:$task,
+          status:'Completed',
+          label:$label,
+        } 
+        $.ajax({
+          type:'PUT',
+          url:'/user/completeToDo/'+id,
+          contentType:'application/json',
+          data:JSON.stringify(todo),
+          success:function(res){
+            alert('Congrats!You completed a Task.'),
+            window.location.href = '/user';
+          },
+          error:function(err){
+            console.log(err);
+          }
+        });
+      });
+
+      //put ajax request on uncheck a To-Do
+      $('.uncheckbutton').click(function(e){
+        var data_id=$(this).parent('div').attr('data-id');
+        const id=data_id;
+        var $task = $(this).parent('div').find('span:first').text();
+        var $label = $(this).parent('div').siblings('div').find('span:first').find('p').text();
+        var todo={
+          task:$task,
+          status:'In Progress',
+          label:$label,
+        } 
+        $.ajax({
+          type:'PUT',
+          url:'/user/incompleteToDo/'+id,
+          contentType:'application/json',
+          data:JSON.stringify(todo),
+          success:function(res){
+            alert('Make sure to complete that Task!'),
+            window.location.href = '/user';
+          },
+          error:function(err){
+            console.log(err);
+          }
+        });
+      });
+
+      $(".setReminder").click(function(e){
+        data_id=$(this).attr('data-id');
+      });
+
+    //post ajax request to set Reminder  
+    $('.saveReminder').click(function(e){
+      const id = data_id;
+      var formData = {
+          duedate : $('input[name=date-pick]').val(),
+          duetime : $('input[name=time-pick]').val(),
+        };
+        $.ajax({
+          type:'POST',
+          url:'/user/setReminder/'+id,
+          contentType:'application/json',
+          data:JSON.stringify(formData),
+          success:function(result){
+            alert('Reminder has been set.');
+            window.location.href='/user';  
+          },
+          error: function(err){
+            console.log(err);
+          }
+        });
+    });  
+    </script>
+  </body>
+</html>

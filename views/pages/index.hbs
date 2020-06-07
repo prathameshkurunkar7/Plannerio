@@ -1,0 +1,151 @@
+<!-- navbar starts -->
+<nav class="#00838f cyan darken-3">
+  <div class="container">
+    <div class="nav-wrapper">
+       <a href="#!" class="brand-logo">Plannerio</a>
+       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+       <ul class="right hide-on-med-and-down">
+         <li><a href="#"><i class ="material-icons left">home</i>Home</a></li>
+         <li><a href="#footer"><i class="material-icons left">account_circle</i>About</a></li>
+         <li><a href="#footer"><i class="material-icons left">call</i>Contact us</a></li>
+       </ul>
+     </div>
+   </div>
+   </nav>
+
+   <ul class="sidenav" id="mobile-demo">
+     <li><a href="#"><i class ="material-icons left">home</i>Home</a></li>
+     <li><a href="#footer"><i class="material-icons left">account_circle</i>About</a></li>
+     <li><a href="#footer"><i class="material-icons left">call</i>Contact us</a></li>
+   </ul>
+<!--navbar ended -->
+
+<!-- parallax section -->
+<section style="height:1480px;">
+
+<div class="parallax-container center-align">
+  <div class="parallax" ><img class="responsive-img" src="7.jpg" alt="Planner-img"></div>
+</div>
+
+<div class="section white">
+  <div class="row container">
+    <h1 class="header center-align">Plannerio</h1>
+    <p class="center-align">Can't keep track of your activities? Let plannerio take care for you! Plannerio is a task management app that helps you to stay organized and manage your day-to-day tasks.  </p>
+   <br>
+   <br>
+    <div class="row">
+      <div class="col s4">
+       <h5 class="header"><i class="material-icons left">done_all</i>Capture Tasks</h5>
+        <p class="center-align">Create task lists with your most important to-dos.View, edit and manage tasks on the go, from any device.</p>
+      </div>
+      <div class="col s4">
+        <h5 class="header"><i class="material-icons left">people</i>Simple UI</h5>
+        <p class="center-align">Modern, simple and easy-to-use experience makes adding tasks fun.</p>
+      </div>
+      <div class="col s4">
+        <h5 class="header"><i class="material-icons left">schedule</i>Stay Organized</h5>
+        <p class="center-align">Set due date for every task to help you achieve your goals.Organize your tasks by date adding labels.</p>
+      </div>
+    </div>
+  </div>
+    <center><a class="btn-large #00838f cyan darken-3 white-text modal-trigger" href="#modal2">Get started</a>
+    <a class=" btn-large #00838f cyan darken-3 white-text modal-trigger" href="#modal1">Already a User?</a></center>
+</div>
+
+<div class="parallax-container center-align">
+  <div class="parallax"><img class="responsive-img" src="8.jpg" alt="Laptop-Img"></div>
+</div>
+
+</section>
+<!-- parallax section ends -->
+{{!-- Login Form --}}
+<div id="modal1" class="modal modal-1">
+  <div class="modal-content">
+    <div class="row">
+      <div class="grid-item tab #00838f cyan darken-3 white-text">Login</div>
+    </div>
+    <div class="row">
+      <form class="col s12" action="/register/login" method="post" autocomplete="off">
+        <br>
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="emailId-1" type="email" name="emailId" class="validate">
+            <label for="emailId-1" class="#00838f cyan-text text-darken-3">Email</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s12">
+            <input  id="password-1" name="password" type="password" class="validate">
+            <label for="password-1" class="#00838f cyan-text text-darken-3">Password</label>
+          </div>
+        </div>
+        <center><button class="btn-large #00838f cyan darken-3" type="submit">Login</button></center>
+      </form>
+    </div>
+    </div>
+</div>
+
+{{!-- SignUp Form --}}
+<div id="modal2" class="modal modal-2">
+  <div class="modal-content">
+  <div class="row">
+    <div class="grid-item tab #00838f cyan darken-3 white-text">SignUp</div>
+  </div>
+
+    <div class="row">
+      
+    <form class="col s12" action="/register" method="post" autocomplete="off">
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="username" name="username" type="text" class="validate">
+          <label for="username" class="#00838f cyan-text text-darken-3">Username</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="emailId-2" name="emailId" type="email" class="validate">
+          <label for="emailId-2" class="#00838f cyan-text text-darken-3">Email</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="password" name="password" type="password" class="validate">
+          <label for="password" class="#00838f cyan-text text-darken-3">Password</label>
+        </div>
+      </div>
+      <center><button class="btn-large #00838f cyan darken-3 modal-close" type="submit">Sign up</button></center>
+    </form>
+
+  </div>
+  </div>
+</div>
+
+
+<!-- footer-->
+<footer id="footer" class="page-footer #00838f cyan darken-3 ">
+      <div class="container">
+        <div class="row">
+          <div class="col l4 s12">
+            <h5 class="white-text">About us</h5>
+            <p class="grey-text text-lighten-4">Plannerio is a product brought to you by a dedicated and organised team. We strive to provide a service to make your lives easier and well planned. Wondering how to stay organised? Add planerio into your suite.</p>
+          </div>
+          <div class="col l4 offset-l2 s12">
+            <h5 class="white-text flow-text">Contact us</h5>
+            <ul>
+              <li><a class="grey-text text-lighten-3" href="#!"><i class="fa fa-facebook-square"> Facebook</i></a></li>
+              <li><a class="grey-text text-lighten-3" href="#!"><i class="fa fa-instagram"> Instagram</i></a></li>
+              <li><a class="grey-text text-lighten-3" href="#!"><i class="fa fa-linkedin-square"> Linkedin</i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container center-align">
+         © 2020 Plannerio
+        </div>
+      </div>
+
+    </footer>
